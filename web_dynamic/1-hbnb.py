@@ -12,7 +12,7 @@ Features:
 - Prevents asset caching by appending a unique cache ID to static file URLs.
 
 Routes:
-- `/0-hbnb/` : Displays the main HBNB page with dynamic content.
+- `/1-hbnb/` : Displays the main HBNB page with dynamic content.
 
 """
 from models import storage
@@ -39,10 +39,10 @@ def close_db(error):
     storage.close()
 
 
-@app.route('/0-hbnb/', strict_slashes=False)
+@app.route('/1-hbnb/', strict_slashes=False)
 def hbnb():
     """ HBNB is alive!
-    Handles the `/0-hbnb/` route.
+    Handles the `/1-hbnb/` route.
 
     Retrieves data from the database:
     - States (sorted by name), along with their associated cities.
@@ -52,7 +52,7 @@ def hbnb():
     Generates unique `cache_id` using `uuid.uuid4()` to prevent asset caching.
 
     Returns:
-        Renders `0-hbnb.html` template with retrieved data and cache ID.
+        Renders `1-hbnb.html` template with retrieved data and cache ID.
     """
     # Retrieves amenities, sort places
     states = storage.all(State).values()
@@ -70,7 +70,7 @@ def hbnb():
 
     cache_id = str(uuid4())  # Generate a unique cache ID
 
-    return render_template('0-hbnb.html',
+    return render_template('1-hbnb.html',
                            states=st_ct,
                            amenities=amenities,
                            places=places,

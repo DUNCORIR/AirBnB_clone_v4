@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../static/scripts/1-hbnb.js?cache_id={{ cache_id }}"></script>
     <link rel="stylesheet" type="text/css" href="../static/styles/4-common.css?cache_id={{ cache_id }}">
     <link rel="stylesheet" type="text/css" href="../static/styles/3-header.css?cache_id={{ cache_id }}">
     <link rel="stylesheet" type="text/css" href="../static/styles/3-footer.css?cache_id={{ cache_id }}">
@@ -21,11 +23,11 @@
 	  <h4>&nbsp;</h4>
 	  <div class="popover">
 	    <ul>
-	      {% for state in states %}
+	      {% for state, cities in states %}
 	      <li>
 		<h2>{{ state.name }}:</h2>
 		<ul>
-		  {% for city in Cities %}
+		  {% for city in cities %}
 		  <li>{{ city.name }}</li>
 		  {% endfor %}
 		</ul>
@@ -40,7 +42,10 @@
 	  <div class="popover">
 	    <ul>
 	      {% for amenity in amenities %}
-	      <li>{{ amenity.name }}</li>
+	      <li>
+            <input type="checkbox" data-id="{{ amenity.id }}" data-name="{{ amenity.name }}">
+            {{ amenity.name }}
+          </li>
 	      {% endfor %}
 	    </ul>
 	  </div>
